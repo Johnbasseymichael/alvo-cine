@@ -1,0 +1,27 @@
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    background: var(--text-color);
+    padding: .2rem;
+    width: 3.5rem;
+    height: 1.9rem;
+    border-radius: 1rem;
+    transition: .5s;
+    position: relative;
+}
+
+
+.toggle-btn .toggler {
+    background: var(--card-color);
+    width: 50%;
+    height: 87%;
+    border-radius: 50%;
+    transition: .5s;
+    position: absolute;
+    left: 5%;
+}
+
+.toggle-btn .toggled {
+    /* background: var(--text-color); */
+    left: 45%;
+}

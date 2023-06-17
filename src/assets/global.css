@@ -1,0 +1,10 @@
+:root {
+    --bg-color: hsl(0, 0%, 10%);
+    --card-color: hsl(0, 0%, 14%);
+    --text-color: hsla(180, 1%, 86%, 0.871);
+    --light-text-color: hsla(180, 1%, 86%, 20);
+
+    --normal-font: 1rem;
+    --small-font: .77rem;
+    --large-font: 1.5rem;
+}
