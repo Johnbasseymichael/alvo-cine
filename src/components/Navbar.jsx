@@ -38,6 +38,9 @@ const Navbar = () => {
                             <Link onClick={() => setOpenMobileMenu(false)} to={'/trending'}>
                                 <span>Trending</span>
                             </Link>
+                            <Link onClick={() => setOpenMobileMenu(false)} to={'/upcoming'}>
+                                <span>Up Coming</span>
+                            </Link>
                             <Link onClick={() => setOpenMobileMenu(false)} to={'/pricing'}>
                                 <span>Pricing</span>
                             </Link>

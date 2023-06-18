@@ -4,7 +4,7 @@ import './style/banner.css'
 
 
 
-const Banner = ({ bannerImage }) => {
+const Banner = ({ bannerImage, showSearchBar }) => {
   const { setSearchInput } = useContext(SearchContext)
   const images = ' https://image.tmdb.org/t/p/w500'
 
@@ -23,10 +23,10 @@ const Banner = ({ bannerImage }) => {
         <p>Your Gateway to Hollywood and Beyond</p>
       </div>
 
-      <div className='search'>
+      {showSearchBar && <div className='search'>
         <input placeholder='search for your favorite movie' onChange={(e) => setSearchInput(e.target.value)} />
         <span className="icon search-icon">&amp;</span>
-      </div>
+      </div>}
 
     </div>
   )

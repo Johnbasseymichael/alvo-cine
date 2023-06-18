@@ -9,12 +9,16 @@ const Trending = () => {
   const [trending, setTrending] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-
   const isSearch = searchInput ? 'search' : 'trending';
+
+  const [page, setPage] = useState(1)
+  const pageNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
   const getTrends = async () => {
+    document.title = 'Trends'
     const options = {
       method: 'GET',
-      url: `https://api.themoviedb.org/3/${isSearch}/all/week`,
+      url: `https://api.themoviedb.org/3/${isSearch}/all/week?page=${page}`,
       params: {
         api_key: import.meta.env.VITE_API_KEY,
         query: searchInput
@@ -33,7 +37,7 @@ const Trending = () => {
 
   useEffect(() => {
     getTrends()
-  }, [searchInput])
+  }, [searchInput, page])
 
   // if (isLoading) return <div>Loading</div>
   if (isError) return <div>erroorr</div>
@@ -48,8 +52,14 @@ const Trending = () => {
 
   return (
     <div className='movies'>
-      <Banner bannerImage={trending[randomImg(trending)]} />
+      <Banner showSearchBar={false} bannerImage={trending[randomImg(trending)]} />
       <MovieList getMovies={trending} />
+
+      <div className="pages-btn">
+        {pageNum.map((num) => {
+          return <button key={num} onClick={() => setPage(num)}>{num}</button>
+        })}
+      </div>
     </div>
   )
 }

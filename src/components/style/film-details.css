@@ -1,0 +1,222 @@
+.movie-details .movie {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 1.3rem;
+}
+
+.movie-details .movie .poster {
+    max-width: 17rem;
+    margin: 0 auto;
+    aspect-ratio: 1/1.7;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 1rem;
+
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details {
+    text-align: center;
+
+}
+
+.details h1 {
+    margin: 1rem 0;
+}
+
+.details p {
+    font-weight: 500;
+    margin: .5rem 0;
+    font-size: clamp(.8rem, 3vmin, 1rem);
+}
+
+.details .tagline {
+    font-style: italic;
+    font-weight: normal;
+}
+
+.movie .play-trailer {
+    width: 8rem;
+    display: flex;
+    gap: .3rem;
+    border: 2px solid var(--text-color);
+    padding: .4rem 1rem;
+    border-radius: .6rem;
+    align-items: center;
+    justify-content: space-between;
+    transition: .5s;
+    margin: 1rem auto;
+    cursor: pointer;
+}
+
+.movie .play-trailer small {
+    font-size: .9rem;
+    padding: .2rem 0;
+}
+
+.movie .play-trailer:hover,
+.movie .play-trailer:active {
+    color: var(--bg-color);
+    background-color: var(--text-color);
+}
+
+.details .overview {
+    font-weight: normal;
+}
+
+.c-header {
+    margin: 1.3rem 0;
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+
+.movie .collection {
+    width: 8rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: .4rem;
+    background: var(--card-color);
+    margin: 0 auto;
+}
+
+.movie .collection img {
+    width: 100%;
+    height: 75%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.movie .link {
+    margin: 1rem;
+}
+
+.movie .link a {
+    color: orangered;
+    text-decoration: underline;
+
+}
+
+/* ======================================================== */
+
+.more-details {
+    padding: 1rem;
+}
+
+.more-details h3 {
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.companies {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
+    flex-wrap: wrap;
+
+}
+
+.companies .company {
+    background: linear-gradient(rgba(249, 174, 0, 0.3), rgba(255, 0, 225, 0.3));
+    width: 10rem;
+    min-height: 20rem;
+    border-radius: 1rem;
+    padding: .7rem;
+}
+
+.company .company-logo {
+    border-radius: .9rem;
+    background: var(--text-color);
+    height: 14rem;
+    overflow: hidden;
+}
+
+.company .company-logo img {
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
+}
+
+.company p {
+    margin-top: .4rem;
+}
+
+/* =================================================== */
+.others-container {
+    padding: 1.3rem;
+}
+
+.others-container .others {
+    margin-top: 1rem;
+}
+
+.others-container .others h4 {
+    text-transform: capitalize;
+}
+
+@media screen and (min-width: 820px) {
+    .movie {
+        display: grid;
+        grid-template-columns: 17rem auto;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .movie .poster {
+        margin: 0 !important;
+    }
+
+    .movie .details {
+        text-align: left;
+    }
+
+    .movie .details h1 {
+        margin: 0;
+    }
+
+    .movie .details p {
+        margin: .1rem;
+    }
+
+    .movie .details .play-trailer {
+        margin: 1rem 0;
+    }
+
+    .movie .collection {
+        margin: 0;
+    }
+
+    .movie .c-header {
+        margin: .5rem 0;
+    }
+
+    .movie .link {
+        text-align: center;
+        margin-top: 1rem !important;
+    }
+
+    /* ======================================== */
+    .more-details h3 {
+        text-align: left;
+    }
+
+    .more-details .companies {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .ggg {
+        display: grid;
+        grid-template-columns: auto 17rem;
+        margin-bottom: 1.5rem;
+    }
+
+}

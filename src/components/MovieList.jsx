@@ -26,7 +26,7 @@ const MovieList = ({ getMovies }) => {
                 </div>
             }
 
-            {getMovies.map(movie => (
+            {getMovies?.map(movie => (
                 <VideoCard handlePlay={handlePlay} key={movie.id} movie={movie} />
             ))}
         </div>

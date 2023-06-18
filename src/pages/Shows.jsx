@@ -9,13 +9,17 @@ const Shows = () => {
   const [shows, setShows] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-
   const isSearch = searchInput ? 'search' : 'discover';
 
+  const [page, setPage] = useState(1)
+  const pageNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
   const getShow = async () => {
+    document.title = 'TV Shows'
     const options = {
       method: 'GET',
-      url: `https://api.themoviedb.org/3/${isSearch}/tv?page=1`,
+      url: `https://api.themoviedb.org/3/${isSearch}/tv?page=${page}`,
       params: {
         api_key: import.meta.env.VITE_API_KEY,
         query: searchInput
@@ -31,7 +35,7 @@ const Shows = () => {
   }
   useEffect(() => {
     getShow()
-  }, [searchInput])
+  }, [searchInput, page])
 
   // if (isLoading) return <div>Loading</div>
   if (isError) return <div>erroorr</div>
@@ -47,8 +51,14 @@ const Shows = () => {
 
   return (
     <div className='movies'>
-      <Banner bannerImage={shows[randomImg(shows)]} />
+      <Banner showSearchBar={true} bannerImage={shows[randomImg(shows)]} />
       <MovieList getMovies={shows} />
+
+      <div className="pages-btn">
+        {pageNum.map((num) => {
+          return <button key={num} onClick={() => setPage(num)}>{num}</button>
+        })}
+      </div>
     </div>
   )
 }
