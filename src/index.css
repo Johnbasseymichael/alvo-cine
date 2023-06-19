@@ -23,3 +23,17 @@ body {
 .icon {
   cursor: pointer;
 }
+
+.lt-bg {
+  background: var(--lt-bg-color);
+  color: var(--lt-text-color);
+
+}
+
+.lt-card {
+  background: var(--lt-card-color);
+}
+
+.lt-light-text {
+  color: var(--lt-light-text-color);
+}

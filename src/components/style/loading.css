@@ -23,11 +23,10 @@
 .ldio-u9a8am7bdt div {
     animation: ldio-u9a8am7bdt 1s linear infinite;
     top: 100px;
-  left: 100px
+  left: 100px;
 }
 .loadingio-spinner-rolling-z2822japxbp {
   width: 200px;
-    background-color: blue;
     height: 200px;
     display: inline-block;
     overflow: hidden;
@@ -35,9 +34,8 @@
 .ldio-u9a8am7bdt {
   width: 100%;
   height: 100%;
-  border: 2px solid red;
   position: relative;
-  transform: translateZ(0) scale(.5);
+  transform: translateZ(0) scale(.85);
   backface-visibility: hidden;
   transform-origin: 0 0; /* see note above */
 }

@@ -1,0 +1,16 @@
+.pnf {
+    display: grid;
+    height: 100vh;
+    place-content: center;
+    text-transform: capitalize;
+    text-align: center;
+    font-weight: 600;
+}
+
+.pnf a {
+    margin: 2rem;
+    background: orangered;
+    color: var(--text-color);
+    padding: .5rem 1rem;
+border-radius: .5rem;
+}

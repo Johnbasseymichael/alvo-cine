@@ -21,6 +21,7 @@
 
 .logo span {
     color: #c60202;
+    font-family: cursive;
 }
 
 .nav-links-wrapper {
@@ -92,13 +93,15 @@
 }
 
 .left-col .hamburger-menu {
-    background-color: var(--text-color);
-    padding: .3rem .5rem;
-    font-size: var(--normal-font);
+    font-size: 1.5rem;
+    width: 100%;
     border-radius: .3rem;
     cursor: pointer;
 }
 
+.left-col .hamburger-menu:active {
+    color: var(--card-color);
+}
 
 
 

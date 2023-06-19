@@ -7,4 +7,10 @@
     --normal-font: 1rem;
     --small-font: .77rem;
     --large-font: 1.5rem;
+
+
+    --lt-bg-color: hsl(167, 12%, 80%);
+    --lt-card-color: hsl(170, 4%, 67%);
+    --lt-text-color: #3a3c3cde;
+    --lt-light-text-color: hsla(180, 2%, 83%, 0.871);
 }

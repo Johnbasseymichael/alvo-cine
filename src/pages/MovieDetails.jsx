@@ -27,7 +27,7 @@ const MovieDetails = () => {
     } catch (error) {
       console.error(error);
     }
-  });
+});
 
 
 

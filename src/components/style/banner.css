@@ -12,6 +12,7 @@
     height: 60%;
     text-transform: capitalize;
     padding: 0 2rem;
+    color: hsla(180, 1%, 86%, 0.871);
 }
 
 .banner .text h1 {
@@ -88,3 +89,4 @@
         padding: .4rem;
     }
 }
+

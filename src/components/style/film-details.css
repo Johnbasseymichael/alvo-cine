@@ -43,11 +43,11 @@
 }
 
 .movie .play-trailer {
-    width: 8rem;
+    width: 7rem;
     display: flex;
     gap: .3rem;
     border: 2px solid var(--text-color);
-    padding: .4rem 1rem;
+    padding: .4rem ;
     border-radius: .6rem;
     align-items: center;
     justify-content: space-between;

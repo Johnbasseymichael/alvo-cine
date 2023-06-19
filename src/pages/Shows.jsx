@@ -12,8 +12,6 @@ const Shows = () => {
   const isSearch = searchInput ? 'search' : 'discover';
 
   const [page, setPage] = useState(1)
-  const pageNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
 
   const getShow = async () => {
     document.title = 'TV Shows'
@@ -36,27 +34,43 @@ const Shows = () => {
     getShow()
   }, [searchInput, page])
 
-  if (isError) return <Error/>
-
-
-
   const randomImg = (arrr) => {
     return Math.floor(Math.random() * arrr.length)
   }
 
-  console.log(shows);
 
+  const nextPage = () => {
+    setPage(page + 1)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+  const prevPage = () => {
+    setPage(page - 1)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+
+  if (isError) return <Error />
 
   return (
     <div className='movies'>
       <Banner showSearchBar={true} bannerImage={shows[randomImg(shows)]} />
-      <MovieList getMovies={shows} />
+      <MovieList parentPath={'shows/'} getMovies={shows} />
 
-      <div className="pages-btn">
-        {pageNum.map((num) => {
-          return <button key={num} onClick={() => setPage(num)}>{num}</button>
-        })}
-      </div>
+
+
+      <>
+        <div className="pages-btn">
+          {page > 1 && <button onClick={prevPage}>prev</button>}
+          <button onClick={nextPage}>next</button>
+        </div>
+        <div className="page-number">page = {page}</div>
+      </>
     </div>
   )
 }

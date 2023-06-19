@@ -8,7 +8,6 @@ import MovieList from '../components/MovieList'
 
 const UpComing = () => {
   const [page, setPage] = useState(1)
-  const pageNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   const { data: upcoming, isError, isLoading } = useQuery(['get upcoming', page], async () => {
     document.title = 'Up Coming'
@@ -34,20 +33,37 @@ const UpComing = () => {
     return Math.floor(Math.random() * arrr.length)
   }
 
+  const nextPage = () => {
+    setPage(page + 1)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+  const prevPage = () => {
+    setPage(page - 1)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
 
   if (isLoading) return <Loading />
   if (isError) return <Error />
   return (
     <div>
       <Banner showSearchBar={false} bannerImage={upcoming && upcoming[randomImg(upcoming)]} />
-      <MovieList getMovies={upcoming} />
+      <MovieList parentPath={'upcoming/'} getMovies={upcoming} />
 
-      <div className="pages-btn">
-        {pageNum.map((num) => {
-          return <button key={num} onClick={() => setPage(num)}>{num}</button>
-        })}
-      </div>
 
+      {upcoming[0] && <>
+        <div className="pages-btn">
+          {page > 1 && <button onClick={prevPage}>prev</button>}
+          <button onClick={nextPage}>next</button>
+        </div>
+        <div className="page-number">page = {page}</div>
+      </>}
     </div>
   )
 }

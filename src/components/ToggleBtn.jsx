@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from '../context/ThemeContext'
 import './style/togglebtn.css'
 
 
 const ToggleBtn = (props) => {
-    const [isToggled, setIsToggled] = useState(false)
+    const {lightTheme, setLightTheme } = useContext(ThemeContext)
 
 
     const handleToggle = () => {
-        setIsToggled(prev => !prev);
-        props.handleToggle();
+        setLightTheme(prev => !prev);
     }
     return (
         <div onClick={handleToggle} className='toggle-btn' >
-            <div className={`toggler ${isToggled && 'toggled'}`}></div>
+            <div className={`toggler ${lightTheme && 'toggled'}`}></div>
         </div>
 
     )

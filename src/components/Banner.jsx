@@ -2,12 +2,16 @@ import React, { useContext } from 'react'
 import { SearchContext } from '../context/SearchContext'
 import './style/banner.css'
 import { BiSearch } from "react-icons/bi";
+import { ThemeContext } from '../context/ThemeContext';
 
 
 
 const Banner = ({ bannerImage, showSearchBar }) => {
   const { setSearchInput } = useContext(SearchContext)
   const images = ' https://image.tmdb.org/t/p/w500'
+  const {lightTheme, setLightTheme } = useContext(ThemeContext)
+
+
 
   const backgroundImageStyle = {
     backgroundImage:
@@ -16,7 +20,7 @@ const Banner = ({ bannerImage, showSearchBar }) => {
 
 
   return (
-    <div className='banner' style={backgroundImageStyle} >
+    <div className={`banner ${lightTheme && ''}`} style={backgroundImageStyle} >
 
       <div className="text">
         <h1>Lights, Camera, Action! Welcome to alvo cine</h1>

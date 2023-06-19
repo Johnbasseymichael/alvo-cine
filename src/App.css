@@ -1,27 +1,26 @@
 .pages-btn {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    width: 70%;
+    justify-content: center;
     margin: 2rem auto;
-    gap: .5rem;
+    gap: 1rem;
 }
 
 .pages-btn button {
-    background: var(--text-color);
-    width: 3rem;
+    background: orangered;
+    width: 4rem;
     height: 2rem;
-    border-radius: .5rem;
+    border-radius: .4rem;
     cursor: pointer;
-    color: var(--bg-color);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: var(--normal-font);
 }
-
-.pages-btn button.active {
-    background: red;
-}
-
-@media screen and (max-width:460px) {
-    .pages-btn {
-        width: 97%;
-    }
+.page-number {
+    background: orangered;
+    width: 8rem;
+    padding: .7rem;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 1rem 1rem 0 0;
 }

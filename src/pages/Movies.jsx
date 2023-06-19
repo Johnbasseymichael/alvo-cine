@@ -13,7 +13,6 @@ const Movies = () => {
     const isSearch = searchInput ? 'search' : 'discover';
 
     const [page, setPage] = useState(1)
-    const pageNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     const getMovies = async () => {
         document.title = 'Movies'
@@ -36,27 +35,43 @@ const Movies = () => {
         getMovies()
     }, [searchInput, page])
 
-    // if (isLoading) return <div>Loading</div>
-    if (isError) return <Error/>
-
-
-
     const randomImg = (arrr) => {
         return Math.floor(Math.random() * arrr.length)
     }
 
 
+    const nextPage = () => {
+        setPage(page + 1)
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+    const prevPage = () => {
+        setPage(page - 1)
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
+
+
+    if (isError) return <Error />
 
     return (
         <div className='movies'>
             <Banner showSearchBar={true} bannerImage={movies[randomImg(movies)]} />
-            <MovieList getMovies={movies} />
+            <MovieList parentPath='' getMovies={movies} />
 
-            <div className="pages-btn">
-                {pageNum.map((num) => {
-                    return <button key={num} onClick={() => setPage(num)}>{num}</button>
-                })}
-            </div>
+
+             <>
+                <div className="pages-btn">
+                    {page > 1 && <button onClick={prevPage}>prev</button>}
+                    <button onClick={nextPage}>next</button>
+                </div>
+                <div className="page-number">page = {page}</div>
+            </>
         </div>
     )
 }

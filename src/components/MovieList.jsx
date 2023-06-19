@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import VideoCard from './VideoCard'
 import './style/movie-list.css'
 import MovieTrailer from '../trailer/MovieTrailer'
+import { ThemeContext } from '../context/ThemeContext'
 
-const MovieList = ({ getMovies }) => {
+const MovieList = ({ parentPath, getMovies }) => {
     const [movieTitle, setMovieTile] = useState('')
     const [showTrailer, setShowTrailer] = useState(false)
+    const { lightTheme } = useContext(ThemeContext)
 
 
     const handlePlay = (title) => {
@@ -18,7 +20,7 @@ const MovieList = ({ getMovies }) => {
         setShowTrailer(false)
     }
     return (
-        <div className="movie-list">
+        <div className={`movie-list ${lightTheme && 'lt-bg'}`}>
             {showTrailer &&
                 <div onClick={handleClose} className='trailer-container'>
                     <div className='close-video-btn' onClick={handleClose}>&</div>
@@ -27,7 +29,7 @@ const MovieList = ({ getMovies }) => {
             }
 
             {getMovies?.map(movie => (
-                <VideoCard handlePlay={handlePlay} key={movie.id} movie={movie} />
+                <VideoCard parentPath={parentPath} handlePlay={handlePlay} key={movie.id} movie={movie} />
             ))}
         </div>
     )
