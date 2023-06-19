@@ -37,7 +37,7 @@ const MovieDetails = () => {
   if (isError) return <Error/>
 
   return (
-    <FilmDetails movieDetails={data}  />
+    <FilmDetails tvShow={false} movieDetails={data}  />
   )
 }
 

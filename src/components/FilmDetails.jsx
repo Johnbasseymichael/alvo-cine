@@ -5,18 +5,15 @@ import noImg from '../assets/img.png'
 import MovieTrailer from '../trailer/MovieTrailer';
 import { BsFillPlayFill } from 'react-icons/bs'
 
-const FilmDetails = ({ movieDetails }) => {
+const FilmDetails = ({ tvShow, movieDetails }) => {
     const images = ' https://image.tmdb.org/t/p/w500'
     const backgroundImageStyle = {
         backgroundImage:
             `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${images + movieDetails?.backdrop_path})`,
     };
 
-
-
     const [movieTitle, setMovieTile] = useState('')
     const [showTrailer, setShowTrailer] = useState(false)
-
 
     const handlePlay = (title) => {
         setMovieTile(title)
@@ -27,7 +24,6 @@ const FilmDetails = ({ movieDetails }) => {
         setMovieTile('')
         setShowTrailer(false)
     }
-
 
 
 
@@ -44,9 +40,15 @@ const FilmDetails = ({ movieDetails }) => {
                     </div>
 
                     <div className="details">
-                        <h1>{movieDetails?.title}</h1>
-                        <p className='tagline'>{movieDetails?.tagline}</p>
+                        <h1>{tvShow ? movieDetails?.name : movieDetails?.title}</h1>
                         <p>{movieDetails?.release_date}</p>
+                        <div>
+                            {movieDetails?.genres.map(g => {
+                                return <span key={g.id}>{g.name}. </span>
+                            })}
+                            {tvShow && < span > {movieDetails?.episode_run_time[0]} min</span>}
+                        </div>
+                        <p className='tagline'>{movieDetails?.tagline} </p>
 
                         <div
                             onClick={() => handlePlay(movieDetails?.title)}
@@ -81,8 +83,60 @@ const FilmDetails = ({ movieDetails }) => {
 
                 </div>
 
-                <div className="ggg">
+                {tvShow &&
+                    <div className="created-by">
+                        <h3>Created By</h3>
+                        <div>
+                            {movieDetails?.created_by.map(person => {
+                                return (
+                                    <div className='person' key={person.id}>
+                                        <div className="profile-img">
+                                            <img src={person.profile_path ? images + person.profile_path : noImg} />
+                                        </div>
+                                        <p>{person.name}</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                }
 
+                {movieDetails.next_episode_to_air &&
+                    <div className="next-e">
+                        <h3>Next Episode</h3>
+                        <div className="np-inner">
+                            <div>
+                                <img src={movieDetails.next_episode_to_air.still_path ? images + movieDetails.next_episode_to_air.still_path : noImg} alt="image" />
+                            </div>
+                            <p>Episode name: {movieDetails?.next_episode_to_air.name}</p>
+                            <p>Episode {movieDetails?.next_episode_to_air.episode_number}</p>
+                            <p>{movieDetails?.next_episode_to_air.air_date}</p>
+                            <p className='np-overview'>{movieDetails.next_episode_to_air.overview}</p>
+                        </div>
+                    </div>
+                }
+
+                {movieDetails.seasons &&
+                    <div className="seasons">
+                        <h3>Seasons</h3>
+                        <div className="season-container">
+                            {movieDetails?.seasons.map(season => {
+                                return (
+                                    <div key={season.id} className='season'>
+                                        <div className="s-img">
+                                            <img src={season.poster_path ? images + season.poster_path : noImg} alt="season image" />
+                                        </div>
+                                        <p>{season.name}</p>
+                                        <p>{season.episode_count} episode{season.episode_count < 2 ? '' : 's'}</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                }
+
+
+                <div className="ggg">
                     <div className="more-details">
 
                         <div className="production">
@@ -121,20 +175,38 @@ const FilmDetails = ({ movieDetails }) => {
                             <p>{movieDetails?.status}</p>
                         </div>
 
-                        <div className="others">
-                            <h4>release date</h4>
-                            <p>{movieDetails?.release_date}</p>
-                        </div>
+                        {!tvShow &&
+                            <>
+                                <div className="others">
+                                    <h4>release date</h4>
+                                    <p>{movieDetails?.release_date}</p>
+                                </div>
+
+                                <div className="others">
+                                    <h4>budget</h4>
+                                    <p>${movieDetails?.budget}</p>
+                                </div>
+
+                                <div className="others">
+                                    <h4>revenue</h4>
+                                    <p>${movieDetails?.revenue}</p>
+                                </div>
+                            </>
+                        }
 
                         <div className="others">
-                            <h4>budget</h4>
-                            <p>${movieDetails?.budget}</p>
+                            <h4>first episode to air</h4>
+                            <p>{movieDetails?.first_air_date}</p>
+                        </div>
+                        <div className="others">
+                            <h4>last episode to air</h4>
+                            <p>{movieDetails?.last_air_date}</p>
                         </div>
 
-                        <div className="others">
-                            <h4>revenue</h4>
-                            <p>${movieDetails?.revenue}</p>
-                        </div>
+                        {movieDetails?.next_episode_to_air && <div className="others">
+                            <h4>last episode to air</h4>
+                            <p>{movieDetails?.next_episode_to_air.air_date}</p>
+                        </div>}
 
                         <div className="others">
                             <h4>spoken languages</h4>
@@ -148,7 +220,9 @@ const FilmDetails = ({ movieDetails }) => {
 
             </div>
 
-            {showTrailer &&
+
+            {
+                showTrailer &&
                 <div onClick={handleClose} className='trailer-container'>
                     <div className='close-video-btn' onClick={handleClose}>&</div>
                     <MovieTrailer movieTitle={movieTitle} />

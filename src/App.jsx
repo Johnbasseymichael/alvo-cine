@@ -39,28 +39,28 @@ function App() {
 
 
 
-  // if (isOnline) {
-  return (
-    <>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Movies />} />
-        <Route path='/trending' element={<Trending />} />
-        <Route path='/shows' element={<Shows />} />
-        <Route path='/upcoming' element={<UpComing />} />
-        <Route path='*' element={<PNF />} />
+  if (isOnline) {
+    return (
+      <>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Movies />} />
+          <Route path='/trending' element={<Trending />} />
+          <Route path='/shows' element={<Shows />} />
+          <Route path='/upcoming' element={<UpComing />} />
+          <Route path='*' element={<PNF />} />
 
-        <Route path='/:movieId' element={<MovieDetails />} />
-        <Route path='/upcoming/:movieId' element={<MovieDetails />} />
-        <Route path='/trending/:movieId' element={<MovieDetails />} />
-        <Route path='/shows/:movieId' element={<ShowDetails />} />
-      </Routes>
-    </>
+          <Route path='/:movieId' element={<MovieDetails />} />
+          <Route path='/upcoming/:movieId' element={<MovieDetails />} />
+          <Route path='/trending/:movieId' element={<MovieDetails />} />
+          <Route path='/shows/:movieId' element={<ShowDetails />} />
+        </Routes>
+      </>
 
-  )
-  // } else {
-  //   return <Offline />
-  // }
+    )
+  } else {
+    return <Offline />
+  }
 
 }
 

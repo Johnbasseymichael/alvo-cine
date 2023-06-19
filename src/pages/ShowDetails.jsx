@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import Error from '../components/Error';
+import FilmDetails from '../components/FilmDetails';
 import Loading from '../components/Loading';
 
 const ShowDetails = () => {
@@ -24,10 +25,6 @@ const ShowDetails = () => {
       console.error(error);
     }
   });
-  console.log(show);
-
-
-
 
 
   if (isLoading) return <Loading />
@@ -35,7 +32,7 @@ const ShowDetails = () => {
 
   return (
     <div className='show-details'>
-      {show.name}
+      <FilmDetails tvShow={true} movieDetails={show}/>
     </div>
   )
 }
