@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import Banner from '../components/Banner'
+import Error from '../components/Error'
 import MovieList from '../components/MovieList'
 import { SearchContext } from '../context/SearchContext'
 
 const Shows = () => {
   const { searchInput } = useContext(SearchContext)
   const [shows, setShows] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const isSearch = searchInput ? 'search' : 'discover';
 
@@ -29,7 +29,6 @@ const Shows = () => {
       setShows(response.data.results);
     }).catch(function (error) {
       setIsError(true)
-      isLoading(false)
       console.error(error);
     });
   }
@@ -37,8 +36,7 @@ const Shows = () => {
     getShow()
   }, [searchInput, page])
 
-  // if (isLoading) return <div>Loading</div>
-  if (isError) return <div>erroorr</div>
+  if (isError) return <Error/>
 
 
 
@@ -46,7 +44,7 @@ const Shows = () => {
     return Math.floor(Math.random() * arrr.length)
   }
 
-  // console.log(shows);
+  console.log(shows);
 
 
   return (

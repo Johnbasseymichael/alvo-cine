@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { SearchContext } from '../context/SearchContext'
 import './style/banner.css'
+import { BiSearch } from "react-icons/bi";
 
 
 
@@ -25,7 +26,7 @@ const Banner = ({ bannerImage, showSearchBar }) => {
 
       {showSearchBar && <div className='search'>
         <input placeholder='search for your favorite movie' onChange={(e) => setSearchInput(e.target.value)} />
-        <span className="icon search-icon">&amp;</span>
+        <span className="icon search-icon"> <BiSearch /></span>
       </div>}
 
     </div>

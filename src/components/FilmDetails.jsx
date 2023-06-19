@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './style/film-details.css'
 import noImg from '../assets/img.png'
 import MovieTrailer from '../trailer/MovieTrailer';
+import { BsFillPlayFill } from 'react-icons/bs'
 
 const FilmDetails = ({ movieDetails }) => {
     const images = ' https://image.tmdb.org/t/p/w500'
@@ -50,10 +51,10 @@ const FilmDetails = ({ movieDetails }) => {
                         <div
                             onClick={() => handlePlay(movieDetails?.title)}
                             className="play-trailer">
-                            <span className="icon">&</span>
+                            <span className="icon"><BsFillPlayFill /></span>
                             <small>Play Trailer</small>
                         </div>
-<h3>OVERVIEW</h3>
+                        <h3>OVERVIEW</h3>
                         <p className="overview">{movieDetails?.overview}</p>
 
                         {movieDetails?.belongs_to_collection &&

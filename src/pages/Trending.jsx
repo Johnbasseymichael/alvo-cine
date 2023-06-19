@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import Banner from '../components/Banner'
+import Error from '../components/Error'
 import MovieList from '../components/MovieList'
 import { SearchContext } from '../context/SearchContext'
 
@@ -40,7 +41,7 @@ const Trending = () => {
   }, [searchInput, page])
 
   // if (isLoading) return <div>Loading</div>
-  if (isError) return <div>erroorr</div>
+  if (isError) return <Error/>
 
 
 

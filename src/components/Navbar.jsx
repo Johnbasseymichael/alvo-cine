@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './style/navbar.css'
 import ToggleBtn from './ToggleBtn'
+import { AiOutlineClose } from "react-icons/ai";
 
 const Navbar = () => {
 
@@ -22,7 +23,8 @@ const Navbar = () => {
                 >
                     <div
                         onClick={() => setOpenMobileMenu(false)}
-                        className="icon close-icon">&
+                        className="icon close-icon">
+                        < AiOutlineClose />
                     </div>
                     <div
                         onClick={e => e.stopPropagation()}
@@ -40,9 +42,6 @@ const Navbar = () => {
                             </Link>
                             <Link onClick={() => setOpenMobileMenu(false)} to={'/upcoming'}>
                                 <span>Up Coming</span>
-                            </Link>
-                            <Link onClick={() => setOpenMobileMenu(false)} to={'/pricing'}>
-                                <span>Pricing</span>
                             </Link>
                         </nav>
                         <ToggleBtn handleToggle={handleToggle} />

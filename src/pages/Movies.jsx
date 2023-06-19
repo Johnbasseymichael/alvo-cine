@@ -4,6 +4,7 @@ import './style/movies.css'
 import Banner from '../components/Banner'
 import MovieList from '../components/MovieList'
 import { SearchContext } from '../context/SearchContext'
+import Error from '../components/Error'
 
 const Movies = () => {
     const { searchInput } = useContext(SearchContext)
@@ -36,7 +37,7 @@ const Movies = () => {
     }, [searchInput, page])
 
     // if (isLoading) return <div>Loading</div>
-    if (isError) return <div>erroorr</div>
+    if (isError) return <Error/>
 
 
 

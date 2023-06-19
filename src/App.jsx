@@ -4,10 +4,11 @@ import Navbar from './components/Navbar'
 import Movies from './pages/Movies'
 import Shows from './pages/Shows'
 import Trending from './pages/Trending'
-import Pricing from './pages/Pricing'
 import UpComing from './pages/UpComing'
 import MovieDetails from './pages/MovieDetails'
+import ShowDetails from './pages/ShowDetails'
 import { useEffect, useState } from 'react'
+import Offline from './components/Offline'
 
 
 
@@ -37,7 +38,7 @@ function App() {
 
 
 
-  // if (isOnline) {
+  if (isOnline) {
     return (
       <>
         <Navbar />
@@ -46,20 +47,19 @@ function App() {
           <Route path='/trending' element={<Trending />} />
           <Route path='/shows' element={<Shows />} />
           <Route path='/upcoming' element={<UpComing />} />
-          <Route path='/pricing' element={<Pricing />} />
 
 
           <Route path='/:movieId' element={<MovieDetails />} />
           <Route path='/upcoming/:movieId' element={<MovieDetails />} />
-          <Route path='/shows/:movieId' element={<MovieDetails />} />
+          <Route path='/shows/:movieId' element={<ShowDetails />} />
           <Route path='/trending/:movieId' element={<MovieDetails />} />
         </Routes>
       </>
 
     )
-  // } else {
-  //  return <h1>u r offline</h1>
-  // }
+  } else {
+    return <Offline />
+  }
 
 }
 

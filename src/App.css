@@ -4,6 +4,7 @@
     justify-content: space-evenly;
     width: 70%;
     margin: 2rem auto;
+    gap: .5rem;
 }
 
 .pages-btn button {
@@ -17,4 +18,10 @@
 
 .pages-btn button.active {
     background: red;
+}
+
+@media screen and (max-width:460px) {
+    .pages-btn {
+        width: 97%;
+    }
 }

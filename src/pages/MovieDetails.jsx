@@ -3,6 +3,8 @@ import axios from 'axios';
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import FilmDetails from '../components/FilmDetails';
+import Loading from '../components/Loading';
+import Error from '../components/Error'
 
 
 const MovieDetails = () => {
@@ -31,8 +33,8 @@ const MovieDetails = () => {
 
 
 
-  if (isLoading) return <div>loading</div>
-  if (isError) return <div>error</div>
+  if (isLoading) return <Loading/>
+  if (isError) return <Error/>
 
   return (
     <FilmDetails movieDetails={data}  />

@@ -1,0 +1,31 @@
+.error {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+    background: rgba(0, 0, 0, .5);
+}
+
+.error>div {
+    background: var(--card-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+.error p {
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.error button {
+    background: orangered;
+    color: wheat;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-weight: bold;
+}
