@@ -41,14 +41,15 @@ const FilmDetails = ({ tvShow, movieDetails }) => {
 
                     <div className="details">
                         <h1>{tvShow ? movieDetails?.name : movieDetails?.title}</h1>
-                        <p>{movieDetails?.release_date}</p>
+                        <p className='tagline'>{movieDetails?.tagline} </p>
+
+                        <span>{movieDetails?.release_date}. </span>
                         <div>
                             {movieDetails?.genres.map(g => {
                                 return <span key={g.id}>{g.name}. </span>
                             })}
                             {tvShow && < span > {movieDetails?.episode_run_time[0]} min</span>}
                         </div>
-                        <p className='tagline'>{movieDetails?.tagline} </p>
 
                         <div
                             onClick={() => handlePlay(movieDetails?.title)}
