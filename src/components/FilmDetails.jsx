@@ -43,8 +43,8 @@ const FilmDetails = ({ tvShow, movieDetails }) => {
                         <h1>{tvShow ? movieDetails?.name : movieDetails?.title}</h1>
                         <p className='tagline'>{movieDetails?.tagline} </p>
 
-                        <span>{movieDetails?.release_date} </span>
                         <div>
+                        <span>{movieDetails?.release_date} </span>
                             {movieDetails?.genres.map(g => {
                                 return <span key={g.id}> {g.name}. </span>
                             })}
