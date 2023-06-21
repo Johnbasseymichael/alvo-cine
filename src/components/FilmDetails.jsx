@@ -204,10 +204,12 @@ const FilmDetails = ({ tvShow, movieDetails }) => {
                                     <p>{movieDetails?.last_air_date}</p>
                                 </div>
 
-                                {movieDetails?.next_episode_to_air && <div className="others">
-                                    <h4>last episode to air</h4>
-                                    <p>{movieDetails?.next_episode_to_air.air_date}</p>
-                                </div>}
+                                {movieDetails?.next_episode_to_air &&
+                                    <div className="others">
+                                        <h4>next episode to air</h4>
+                                        <p>{movieDetails?.next_episode_to_air.air_date}</p>
+                                    </div>
+                                }
                             </>
                         }
 
