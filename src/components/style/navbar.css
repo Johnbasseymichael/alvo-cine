@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 4rem;
-    width: 70rem;
+    width: 69rem;
     max-width: 70rem !important;
     margin: auto;
 }
@@ -80,7 +80,7 @@
 }
 
 .nav-links nav span {
-    color: rgb(242, 47, 47);
+    color: var(--red);
     font-size: 1.6rem;
     font-family: "Oswald", sans-serif;
 }
@@ -128,7 +128,7 @@
     }
     
     .nav-links nav a span {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
     .mobile-menu {

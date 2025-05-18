@@ -3,6 +3,7 @@
     --card-color: hsl(0, 0%, 14%);
     --text-color: hsla(180, 1%, 86%, 0.871);
     --light-text-color: hsla(180, 1%, 86%, 20);
+    --red:rgb(242, 47, 47);
 
     --normal-font: 1rem;
     --small-font: .77rem;

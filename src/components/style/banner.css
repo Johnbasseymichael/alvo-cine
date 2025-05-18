@@ -1,29 +1,64 @@
 .banner {
+    max-width: 69rem;
+    height: 25rem;
+    margin-bottom: 0.5rem;
+    margin-inline: auto;
+}
+
+.swiper {
     width: 100%;
-    height: 17rem;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin-bottom: .5rem;
+    border-radius: 1rem;
 }
 
-
-.banner .text {
-    height: 60%;
+.random-movie-details {
     text-transform: capitalize;
-    padding: 0 2rem;
-    color: hsla(180, 1%, 86%, 0.871);
+    position: absolute;
+    bottom: 6rem;
+    left: 4rem;
 }
 
-.banner .text h1 {
-    font-size: var(--large-font);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 2rem;
+.random-movie-details h2 {
+    font-family: "Oswald", sans-serif;
+    font-size: 2rem;
 }
 
-.banner .text h3 {
-    font-size: var(--normal-font);
-    margin: 1rem 0;
+.random-movie-details i {
+    margin-top: 0.5rem;
+    display: block;
+}
+
+.random-movie-details .btn {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.random-movie-details .btn button, .random-movie-details a{
+    all: unset;
+    border: 2px solid var(--red);
+    color: var(--red);
+    padding: 0.5rem 0.8rem;
+    border-radius: 2rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.random-movie-details .btn button:first-child {
+    background: var(--red);
+    color: var(--bg-color);
 }
 
 .search {
@@ -41,52 +76,42 @@
 
 .search input {
     font-size: var(--normal-font);
-    padding: .5rem;
+    padding: 0.5rem;
     width: 100%;
     background: transparent;
 }
 
 .search .search-icon {
-    transition: .5s;
+    transition: 0.5s;
     width: 2.5rem;
     height: 100%;
-    padding: .5rem;
+    padding: 0.5rem;
     text-align: center;
     color: var(--bg-color);
     font-size: var(--normal-font);
 }
-
 
 .search .search-icon:hover {
     color: var(--text-color);
     background: var(--bg-color);
 }
 
-
 @media screen and (max-width: 800px) {
     .banner {
-        height: 15rem;
+        height: 20rem;
     }
 
-    .banner .text {
-        height: auto;
-    }
-
-    .banner .text h3 {
-        margin: .5rem 0;
-    }
-
-    .banner .text h1 {
-        font-size: 1.3rem;
+    .random-movie-details {
+        left: 1rem;
+        bottom: 3rem;
     }
 
     .search input {
         font-size: var(--normal-font);
-        padding: .3rem .5rem;
+        padding: 0.3rem 0.5rem;
     }
 
     .search .search-icon {
-        padding: .4rem;
+        padding: 0.4rem;
     }
 }
-
