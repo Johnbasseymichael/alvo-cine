@@ -65,13 +65,13 @@ const Movies = () => {
             <MovieList parentPath='' getMovies={movies} />
 
 
-             <>
+             {/* <>
                 <div className="pages-btn">
                     {page > 1 && <button onClick={prevPage}>prev</button>}
                     <button onClick={nextPage}>next</button>
                 </div>
                 <div className="page-number">page = {page}</div>
-            </>
+            </> */}
         </div>
     )
 }

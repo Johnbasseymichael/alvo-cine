@@ -16,8 +16,8 @@
 body {
   color: var(--text-color);
   background-color: var(--bg-color);
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-
+  font-family: "Roboto", sans-serif;
+  /* font-family: "Oswald", sans-serif; */
 }
 
 .icon {
