@@ -25,9 +25,7 @@ const Movies = () => {
         return shuffled.slice(0, count);
     }
 
-    const randomImg = (array) => {
-        return Math.floor(Math.random() * array.length);
-    };
+    
 
     // Fetch movies
     const getMovies = async () => {
@@ -83,16 +81,15 @@ const Movies = () => {
                 showSearchBar={true}
                 randomMovies={randomMovies}
                 parentPath=""
-                bannerImage={randomMovies[randomImg(randomMovies)]}
             />
-            <MovieList parentPath="" getMovies={movies} />
+            <MovieList parentPath="" sectionNumber={1} getMovies={movies} />
 
             {/* Pagination controls */}
-            <div className="pages-btn">
+            {/* <div className="pages-btn">
                 {page > 1 && <button onClick={prevPage}>prev</button>}
                 <button onClick={nextPage}>next</button>
             </div>
-            <div className="page-number">page = {page}</div>
+            <div className="page-number">page = {page}</div> */}
         </div>
     );
 };

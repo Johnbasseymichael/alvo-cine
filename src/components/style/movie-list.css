@@ -1,5 +1,5 @@
 .movie-list-container {
-    margin: 0 auto;
+    margin: 3rem auto;
     max-width: 66rem;
     padding: 0 0.7rem;
 }
@@ -28,8 +28,6 @@
     display: block;
     border-radius: 4rem;
 }
-
-
 
 .trailer-container {
     position: fixed;
@@ -66,6 +64,10 @@
 }
 
 @media screen and (max-width: 658px) {
+    .movie-list-container {
+        margin: 4rem auto 2rem auto;
+    }
+
     .trailer-container .trailer > div {
         width: 100vw !important;
         height: 60vh !important;

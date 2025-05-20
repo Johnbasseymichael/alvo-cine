@@ -1,7 +1,9 @@
 :root {
-    --bg-color: hsl(0, 0%, 10%);
-    --card-color: hsl(0, 0%, 14%);
-    --text-color: hsla(180, 1%, 86%, 0.871);
+    /* --bg-color: hsl(0, 0%, 10%); */
+    --bg-color: oklch(21% 0.034 264.665);
+    /* --card-color: hsl(0, 0%, 14%); */
+    --card-color: oklch(13% 0.028 261.692);
+    --text-color: hsl(0, 0%, 94%);
     --light-text-color: hsla(180, 1%, 86%, 20);
     --red:rgb(242, 47, 47);
 

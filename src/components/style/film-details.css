@@ -214,7 +214,7 @@ h3 {
     place-content: center;
     grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
     gap: 0.5rem;
-    width: fit-content;
+    max-width: 50rem;
     margin: 1rem auto;
 }
 

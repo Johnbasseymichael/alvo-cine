@@ -3,9 +3,29 @@ import VideoCard from "./VideoCard";
 import "./style/movie-list.css";
 import MovieTrailer from "../trailer/MovieTrailer";
 
-const MovieList = ({ parentPath, getMovies }) => {
+const MovieList = ({ parentPath, getMovies, sectionNumber }) => {
     const [movieTitle, setMovieTile] = useState("");
     const [showTrailer, setShowTrailer] = useState(false);
+    const [section, setSection] = useState("");
+
+    useEffect(() => {
+        switch (sectionNumber) {
+            case 1:
+                setSection("Movies");
+                break;
+            case 2:
+                setSection("Top Series");
+                break;
+            case 3:
+                setSection("Now Trending");
+                break;
+            case 4:
+                setSection("Up Coming ");
+                break;
+            default:
+                break;
+        }
+    }, []);
 
     const handlePlay = (title) => {
         setMovieTile(title);
@@ -18,7 +38,8 @@ const MovieList = ({ parentPath, getMovies }) => {
     };
     return (
         <div className="movie-list-container">
-        <h2 className="page-name">movie</h2>
+            <h2 className="page-name">{section}</h2>
+
             <div className="movie-list">
                 {showTrailer && (
                     <div onClick={handleClose} className="trailer-container">
