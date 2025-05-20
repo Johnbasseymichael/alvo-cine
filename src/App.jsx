@@ -48,7 +48,6 @@ function App() {
 }
 export default App;
 
-// search
+
 // hooks
-// pagination
 // skeleton
