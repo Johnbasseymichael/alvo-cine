@@ -1,6 +1,6 @@
 .pnf {
     display: grid;
-    height: 100vh;
+    height: 90svh;
     place-content: center;
     text-transform: capitalize;
     text-align: center;
@@ -9,8 +9,8 @@
 
 .pnf a {
     margin: 2rem;
-    background: orangered;
+    background: var(--red);
     color: var(--text-color);
-    padding: .5rem 1rem;
-border-radius: .5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
 }

@@ -2,12 +2,31 @@ import React, { useContext, useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import "./style/movie-list.css";
 import MovieTrailer from "../trailer/MovieTrailer";
-import { ThemeContext } from "../context/ThemeContext";
+import { AiOutlineClose } from "react-icons/ai";
 
-const MovieList = ({ parentPath, getMovies }) => {
+const MovieList = ({ parentPath, getMovies, sectionNumber }) => {
     const [movieTitle, setMovieTile] = useState("");
     const [showTrailer, setShowTrailer] = useState(false);
-    const { lightTheme } = useContext(ThemeContext);
+    const [section, setSection] = useState("");
+
+    useEffect(() => {
+        switch (sectionNumber) {
+            case 1:
+                setSection("Movies");
+                break;
+            case 2:
+                setSection("Top Series");
+                break;
+            case 3:
+                setSection("Now Trending");
+                break;
+            case 4:
+                setSection("Up Coming ");
+                break;
+            default:
+                break;
+        }
+    }, []);
 
     const handlePlay = (title) => {
         setMovieTile(title);
@@ -19,24 +38,28 @@ const MovieList = ({ parentPath, getMovies }) => {
         setShowTrailer(false);
     };
     return (
-        <div className={`movie-list ${lightTheme && "lt-bg"}`}>
-            {showTrailer && (
-                <div onClick={handleClose} className="trailer-container">
-                    <div className="close-video-btn" onClick={handleClose}>
-                        X
-                    </div>
-                    <MovieTrailer movieTitle={movieTitle} />
-                </div>
-            )}
+        <div className="movie-list-container">
+            <h2 className="page-name">{section}</h2>
 
-            {getMovies?.map((movie) => (
-                <VideoCard
-                    parentPath={parentPath}
-                    handlePlay={handlePlay}
-                    key={movie.id}
-                    movie={movie}
-                />
-            ))}
+            <div className="movie-list">
+                {showTrailer && (
+                    <div onClick={handleClose} className="trailer-container">
+                        <div className="close-video-btn" onClick={handleClose}>
+                            <AiOutlineClose />
+                        </div>
+                        <MovieTrailer movieTitle={movieTitle} />
+                    </div>
+                )}
+
+                {getMovies?.map((movie) => (
+                    <VideoCard
+                        parentPath={parentPath}
+                        handlePlay={handlePlay}
+                        key={movie.id}
+                        movie={movie}
+                    />
+                ))}
+            </div>
         </div>
     );
 };

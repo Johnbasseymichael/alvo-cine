@@ -1,55 +1,79 @@
- .movie-list {
-     display: grid;
-     grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-     gap: .5rem;
-     padding: 0 .5rem;
- }
+.movie-list-container {
+    margin: 3rem auto;
+    max-width: 66rem;
+    padding: 0 0.7rem;
+}
 
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 1rem;
+}
 
- .trailer-container {
-     position: fixed;
-     z-index: 1000;
-     top: 0;
-     left: 0;
-     right: 0;
-     bottom: 0;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     height: 100vh;
-     background: rgba(0, 0, 0, 0.8);
- }
+.page-name {
+    text-transform: capitalize;
+    margin-top: 1rem;
+    padding: 1rem 0;
+    color: var(--red);
+    width: fit-content;
+    font-family: "Oswald", sans-serif;
+}
 
- .trailer-container .close-video-btn {
-     position: absolute;
-     top: 2rem;
-     font-size: var(--large-font);
-     background: var(--text-color);
-     border-radius: 50%;
-     color: var(--bg-color);
-     height: 2.5rem;
-     width: 2.5rem;
-     display: grid;
-     place-content: center;
-     cursor: pointer;
- }
+.page-name::after {
+    content: "";
+    height: 0.3rem;
 
- .trailer-container .close-video-btn:hover {
-     background: var(--bg-color);
-     color: var(--text-color);
- }
+    width: 150%;
+    background: var(--red);
+    display: block;
+    border-radius: 4rem;
+}
 
+.trailer-container {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+}
 
+.trailer-container .close-video-btn {
+    position: absolute;
+    top: 2rem;
+    font-size: var(--large-font);
+    background: var(--text-color);
+    border-radius: 50%;
+    color: var(--bg-color);
+    height: 2.5rem;
+    width: 2.5rem;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
 
+.trailer-container .close-video-btn:hover {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
 
- @media screen and (max-width: 658px) {
-     .trailer-container .trailer>div {
-         width: 100vw !important;
-         height: 60vh !important;
-     }
+@media screen and (max-width: 658px) {
+    .movie-list-container {
+        margin: 4rem auto 2rem auto;
+    }
 
-     .trailer-container .close-video-btn {
-         right: 2rem;
-     }
- }
+    .trailer-container .trailer > div {
+        width: 100vw !important;
+        height: 60vh !important;
+    }
+
+    .trailer-container .close-video-btn {
+        right: 2rem;
+    }
+}

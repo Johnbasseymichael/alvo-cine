@@ -1,31 +1,54 @@
-.offline {
-    height: 100vh;
-    display: grid;
-    place-content: center;
+.offline-wrapper {
+    width: 100svw;
+    height: 100svh;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+
+    background: rgba(0, 0, 0, 0.579);
 }
 
-.offline>div {
+.offline {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    background: var(--card-color, #fff8f0);
+    color: var(--text-color, #000);
     padding: 1rem;
+    border-radius: 0.7rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     text-align: center;
+    width: fit-content;
+    max-width: 90%;
+}
+
+.offline p {
+    margin: 0.5rem 0;
     text-transform: capitalize;
     font-weight: bold;
-    background: var(--card-color);
-    border-radius: .7rem;
-    margin: .3rem;
 }
 
-.offline p
- {
-    margin: 1rem 0;
- }
- .offline button {
-    margin: 1rem;
-    font-size: var(--normal-font);
-    border-radius: .5rem;
+.offline button {
+    margin: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
     width: 6rem;
     height: 2.4rem;
-    background: orangered;
-    color: var(--text-color);
+    background: var(--red);
+    color: white;
     font-weight: bold;
     text-transform: capitalize;
- }
+    border: none;
+    cursor: pointer;
+}
+
+.offline button:hover {
+    opacity: .7;
+}
+
+.offline .close {
+background: none;
+border: 2px solid var(--red);
+}

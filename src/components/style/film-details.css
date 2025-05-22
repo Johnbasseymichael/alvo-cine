@@ -13,7 +13,6 @@
     overflow: hidden;
     cursor: pointer;
     border-radius: 1rem;
-
 }
 
 .poster img {
@@ -24,17 +23,16 @@
 
 .details {
     text-align: center;
-
 }
 
 .details h1 {
     margin: 1rem 0;
+    font-family: "Oswald", sans-serif;
 }
 
 .details p {
-    font-weight: 500;
-    margin: .5rem 0;
-    font-size: clamp(.8rem, 3vmin, 1rem);
+    margin: 0.5rem 0;
+    font-size: clamp(0.8rem, 3vmin, 1rem);
 }
 
 .details .tagline {
@@ -43,47 +41,47 @@
 }
 
 .movie .play-trailer {
-    width: 7rem;
+    width: fit-content;
+    font-weight: 600;
     display: flex;
-    gap: .3rem;
-    border: 2px solid var(--text-color);
-    padding: .4rem;
-    border-radius: .6rem;
+    gap: 0.3rem;
+    border: 2px solid var(--red);
+    padding: 0.5rem 0.8rem;
+    border-radius: 6rem;
     align-items: center;
     justify-content: space-between;
-    transition: .5s;
-    margin: 1rem auto;
+    transition: 0.5s;
+    margin: 2rem auto;
     cursor: pointer;
+    color: var(--red);
 }
 
 .movie .play-trailer small {
-    font-size: .9rem;
-    padding: .2rem 0;
+    font-size: 0.9rem;
+    padding: 0.2rem 0;
 }
 
 .movie .play-trailer:hover,
 .movie .play-trailer:active {
     color: var(--bg-color);
-    background-color: var(--text-color);
+    background-color: var(--red);
+}
+
+h3 {
+    font-family: "Oswald", sans-serif;
 }
 
 .details .overview {
     font-weight: normal;
 }
 
-.c-header {
-    margin: 1.3rem 0;
-    text-decoration: underline;
-    text-transform: capitalize;
-}
-
 .movie .collection {
     width: 8rem;
     border-radius: 1rem;
     overflow: hidden;
-    padding: .4rem;
+    padding: 0.4rem;
     background: var(--card-color);
-    margin: 0 auto;
+    margin: 1rem auto;
 }
 
 .movie .collection img {
@@ -98,9 +96,11 @@
 }
 
 .movie .link a {
-    color: orangered;
+    color: var(--red);
     text-decoration: underline;
-
+}
+.link p {
+    font-weight: 600;
 }
 
 /* ======================================================== */
@@ -113,27 +113,26 @@
     text-align: center;
 }
 
-.created-by>div {
+.created-by > div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
 }
 
-.created-by>div .person {
+.created-by > div .person {
     width: 8rem;
     min-height: 15rem;
     background: var(--card-color);
-    padding: .6rem;
+    padding: 0.6rem;
     border-radius: 1rem;
-
 }
 
 .person .profile-img {
     height: 75%;
     overflow: hidden;
-    border-radius: .8rem;
+    border-radius: 0.8rem;
 }
 
 .profile-img img {
@@ -144,7 +143,7 @@
 
 .person p {
     text-align: center;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
 }
 
 /* ======================================================== */
@@ -156,30 +155,40 @@
 .more-details h3 {
     text-transform: uppercase;
     margin-bottom: 1.5rem;
-    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.4rem;
 }
 
 .companies {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .7rem;
-    flex-wrap: wrap;
-
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 1rem;
 }
 
 .companies .company {
-    background: linear-gradient(rgba(249, 174, 0, 0.3), rgba(255, 0, 225, 0.3));
-    width: 10rem;
-    min-height: 20rem;
-    border-radius: 1rem;
-    padding: .7rem;
+    background: var(--card-color);
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+}
+
+.company-details {
+    font-weight: 600;
+    font-family: "Oswald", sans-serif;
+    font-size: 0.88rem;
+}
+
+.company-name {
+    font-weight: 400;
 }
 
 .company .company-logo {
-    border-radius: .9rem;
+    border-radius: 0.4rem;
     background: var(--text-color);
-    height: 14rem;
+    height: 5rem;
+    aspect-ratio: 1/1;
     overflow: hidden;
 }
 
@@ -187,10 +196,6 @@
     width: 100%;
     object-fit: contain;
     height: 100%;
-}
-
-.company p {
-    margin-top: .4rem;
 }
 
 /* =================================================== */
@@ -208,8 +213,8 @@
     display: grid;
     place-content: center;
     grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
-    gap: .5rem;
-    width: fit-content;
+    gap: 0.5rem;
+    max-width: 50rem;
     margin: 1rem auto;
 }
 
@@ -219,7 +224,6 @@
 
 .s-img {
     overflow: hidden;
-
 }
 
 .season img {
@@ -229,11 +233,10 @@
 }
 
 .seasons p {
-    margin: .2rem 0;
+    margin: 0.2rem 0;
 }
 
 /* =================================================== */
-
 
 .next-e {
     padding: 1rem;
@@ -244,14 +247,14 @@
     margin: 1rem;
 }
 
-.np-inner>div {
+.np-inner > div {
     max-width: 30rem;
     overflow: hidden;
     margin: 0 auto;
     border-radius: 1rem;
 }
 
-.np-inner>div img {
+.np-inner > div img {
     height: 100%;
     width: 100%;
 }
@@ -261,28 +264,39 @@
 }
 
 .next-e p {
-    margin: .5rem auto;
+    margin: 0.5rem auto;
 }
 
 /* =================================================== */
 .others-container {
     padding: 1.3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: 0.6rem;
 }
 
 .others-container .others {
     margin-top: 1rem;
+    font-size: 0.9rem;
 }
 
 .others-container .others h4 {
     text-transform: capitalize;
+    font-size: 1.1rem;
+    font-family: "Oswald", sans-serif;
 }
 
 @media screen and (min-width: 820px) {
-    .movie {
+    /* .movie {
+    }
+     */
+    .movie-inner-container {
         display: grid;
         grid-template-columns: 17rem auto;
         gap: 1rem;
         align-items: center;
+        margin: 0 auto;
+        max-width: 60rem;
     }
 
     .movie .poster {
@@ -298,7 +312,7 @@
     }
 
     .movie .details p {
-        margin: .1rem;
+        margin: 0.1rem;
     }
 
     .movie .details .play-trailer {
@@ -310,7 +324,7 @@
     }
 
     .movie .c-header {
-        margin: .5rem 0;
+        margin: 0.5rem 0;
     }
 
     .movie .link {
@@ -332,11 +346,14 @@
         display: grid;
         grid-template-columns: auto 17rem;
         margin-bottom: 1.5rem;
+        margin-inline: auto;
+        max-width: 60rem;
     }
 
+    .link {
+        text-align: start !important;
+    }
     /* ========================================= */
-
-
 }
 
 h3 {

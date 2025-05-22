@@ -1,66 +1,76 @@
-import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import './style/navbar.css'
-import ToggleBtn from './ToggleBtn'
+import React, { useState } from "react";
+import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
+import "./style/navbar.css";
 import { AiOutlineClose } from "react-icons/ai";
-import { AiOutlineMenu } from "react-icons/ai";
+import { IoMenu } from "react-icons/io5";
 
 const Navbar = () => {
-
-    const [openMobileMenu, setOpenMobileMenu] = useState(false)
-
-    const handleToggle = () => {
-        alert('toggled')
-    }
+    const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     return (
         <div className={`navbar`}>
             <div className="right-col">
-                <h2 className="logo">ALVO<span>CINE</span></h2>
+                <img src={logo} alt="logo" className="logo" />
 
                 <div
                     onClick={() => setOpenMobileMenu(false)}
-                    className={`nav-links-wrapper ${openMobileMenu && 'open-mobile-menu'}`}
+                    className={`nav-links-wrapper ${
+                        openMobileMenu && "open-mobile-menu"
+                    }`}
                 >
                     <div
                         onClick={() => setOpenMobileMenu(false)}
-                        className="icon close-icon">
-                        < AiOutlineClose />
+                        className="icon close-icon"
+                    >
+                        <AiOutlineClose />
                     </div>
                     <div
-                        onClick={e => e.stopPropagation()}
+                        onClick={(e) => e.stopPropagation()}
                         className="nav-links"
                     >
                         <nav>
-                            <Link onClick={() => setOpenMobileMenu(false)} to={'/'}>
-                                <span>Movies</span>
+                            <Link
+                                onClick={() => setOpenMobileMenu(false)}
+                                to={"/"}
+                            >
+                                <span>Discover</span>
                             </Link>
-                            <Link onClick={() => setOpenMobileMenu(false)} to={'/shows'}>
-                                <span>Shows</span>
+                            <Link
+                                onClick={() => setOpenMobileMenu(false)}
+                                to={"/shows"}
+                            >
+                                <span>Series</span>
                             </Link>
-                            <Link onClick={() => setOpenMobileMenu(false)} to={'/trending'}>
+                            <Link
+                                onClick={() => setOpenMobileMenu(false)}
+                                to={"/trending"}
+                            >
                                 <span>Trending</span>
                             </Link>
-                            <Link onClick={() => setOpenMobileMenu(false)} to={'/upcoming'}>
+                            <Link
+                                onClick={() => setOpenMobileMenu(false)}
+                                to={"/upcoming"}
+                            >
                                 <span>Up Coming</span>
                             </Link>
                         </nav>
-                        <ToggleBtn handleToggle={handleToggle} />
                     </div>
                 </div>
-
             </div>
 
             <div className="left-col">
                 <div
                     onClick={() => setOpenMobileMenu(true)}
-                    className="mobile-menu">
-                    <span className="icon hamburger-menu"><AiOutlineMenu/></span>
+                    className="mobile-menu"
+                >
+                    <span className="icon hamburger-menu">
+                        <IoMenu />
+                    </span>
                 </div>
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

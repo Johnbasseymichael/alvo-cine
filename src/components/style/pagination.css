@@ -1,0 +1,40 @@
+.pagination {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.page-item {
+    border: 1px solid var(--red);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: var(--card-color);
+    color: var(--text-color);
+}
+
+.page-item:hover {
+    background-color: var(--red);
+    color: var(--text-color);
+}
+
+.active {
+    background-color: var(--red);
+    color: white;
+    font-weight: bold;
+}
+
+/* for mobile */
+@media screen and (max-width: 670px) {
+    .pagination {
+        gap: .2rem;
+    }
+
+    .page-item {
+        padding: .4rem .5rem;
+        
+    }
+}

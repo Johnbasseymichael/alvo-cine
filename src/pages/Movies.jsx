@@ -1,81 +1,67 @@
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
+
+import MovieSkeleton from "../components/MovieSkeleton";
+import useFetchFilms from "../hooks/useFetchFilms";
+import "../components/style/pagination.css";
 import "./style/movies.css";
 import Banner from "../components/Banner";
 import MovieList from "../components/MovieList";
-import { SearchContext } from "../context/SearchContext";
 import Error from "../components/Error";
+import useRandomMovies from "../hooks/useRandomMovies";
 
 const Movies = () => {
-    const { searchInput } = useContext(SearchContext);
-    const [movies, setMovies] = useState([]);
-    const [isError, setIsError] = useState(false);
-    const isSearch = searchInput ? "search" : "discover";
-
     const [page, setPage] = useState(1);
 
-    const getMovies = async () => {
-        document.title = "Movies";
-        const options = {
-            method: "GET",
-            url: `https://api.themoviedb.org/3/${isSearch}/movie?page=${page}`,
-            params: {
-                api_key: import.meta.env.VITE_API_KEY,
-                query: searchInput,
-            },
-        };
-        await axios
-            .request(options)
-            .then((response) => {
-                setMovies(response.data.results);
-            })
-            .catch(function (error) {
-                setIsError(true);
-                console.error(error);
-            });
-    };
-
     useEffect(() => {
-        getMovies();
-    }, [searchInput, page]);
+        document.title = "Discover || AlvoCine ";
+    }, []);
 
-    const randomImg = (arrr) => {
-        return Math.floor(Math.random() * arrr.length);
+    //get movies
+    const {
+        films: movies,
+        isLoading,
+        isError,
+    } = useFetchFilms("discover", "movie", page);
+    const randomMovies = useRandomMovies(movies);
+
+    //pagination
+    const handlePageClick = (data) => {
+        setPage(data.selected + 1); // selected is 0-based
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    const nextPage = () => {
-        setPage(page + 1);
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-
-    const prevPage = () => {
-        setPage(page - 1);
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-
+    if (isLoading) return <MovieSkeleton count={8} />;
     if (isError) return <Error />;
 
     return (
         <div className="movies">
             <Banner
                 showSearchBar={true}
-                bannerImage={movies[randomImg(movies)]}
+                randomMovies={randomMovies}
+                parentPath=""
             />
+            <MovieList parentPath="" sectionNumber={1} getMovies={movies} />
 
-            <MovieList parentPath="" getMovies={movies} />
-
-            <>
-                <div className="pages-btn">
-                    {page > 1 && <button onClick={prevPage}>prev</button>}
-                    <button onClick={nextPage}>next</button>
-                </div>
-            </>
+            <ReactPaginate
+                previousLabel={"← Prev"}
+                nextLabel={"Next →"}
+                breakLabel={"..."}
+                pageCount={50}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                pageClassName={"page-item"}
+                pageLinkClassName={"page-link"}
+                previousClassName={"page-item"}
+                nextClassName={"page-item"}
+                previousLinkClassName={"page-link"}
+                nextLinkClassName={"page-link"}
+                breakClassName={"page-item"}
+                breakLinkClassName={"page-link"}
+            />
         </div>
     );
 };

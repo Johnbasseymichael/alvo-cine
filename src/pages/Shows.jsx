@@ -1,78 +1,66 @@
-import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
-import Banner from '../components/Banner'
-import Error from '../components/Error'
-import MovieList from '../components/MovieList'
-import { SearchContext } from '../context/SearchContext'
+import { useEffect, useState } from "react";
+import Banner from "../components/Banner";
+import Error from "../components/Error";
+import MovieList from "../components/MovieList";
+import useRandomMovies from "../hooks/useRandomMovies";
+import useFetchFilms from "../hooks/useFetchFilms";
+import MovieSkeleton from "../components/MovieSkeleton";
+import ReactPaginate from "react-paginate";
 
 const Shows = () => {
-  const { searchInput } = useContext(SearchContext)
-  const [shows, setShows] = useState([])
-  const [isError, setIsError] = useState(false)
-  const isSearch = searchInput ? 'search' : 'discover';
+    const [page, setPage] = useState(1);
 
-  const [page, setPage] = useState(1)
+    useEffect(() => {
+            document.title = "Series || AlvoCine ";
+        }, []);
 
-  const getShow = async () => {
-    document.title = 'TV Shows'
-    const options = {
-      method: 'GET',
-      url: `https://api.themoviedb.org/3/${isSearch}/tv?page=${page}`,
-      params: {
-        api_key: import.meta.env.VITE_API_KEY,
-        query: searchInput
-      },
+    //get shows/series
+    const {
+        films: shows,
+        isLoading,
+        isError,
+    } = useFetchFilms("discover", "tv", page);
+
+    const randomMovies = useRandomMovies(shows);
+
+    //pagination
+    const handlePageClick = (data) => {
+        setPage(data.selected + 1); // selected is 0-based
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
-    await axios.request(options).then((response) => {
-      setShows(response.data.results);
-    }).catch(function (error) {
-      setIsError(true)
-      console.error(error);
-    });
-  }
-  useEffect(() => {
-    getShow()
-  }, [searchInput, page])
 
-  const randomImg = (arrr) => {
-    return Math.floor(Math.random() * arrr.length)
-  }
+    if (isLoading) return <MovieSkeleton count={8} />;
+    if (isError) return <Error />;
 
-
-  const nextPage = () => {
-    setPage(page + 1)
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-  const prevPage = () => {
-    setPage(page - 1)
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-
-  if (isError) return <Error />
-
-  return (
-    <div className='movies'>
-      <Banner showSearchBar={true} bannerImage={shows[randomImg(shows)]} />
-      <MovieList parentPath={'shows/'} getMovies={shows} />
-
-
-
-      <>
-        <div className="pages-btn">
-          {page > 1 && <button onClick={prevPage}>prev</button>}
-          <button onClick={nextPage}>next</button>
+    return (
+        <div className="movies">
+            <Banner showSearchBar={true}  parentPath="/shows" randomMovies={randomMovies} />
+            <MovieList
+                parentPath={"shows/"}
+                sectionNumber={2}
+                getMovies={shows}
+            />
+            <ReactPaginate
+                previousLabel={"← Prev"}
+                nextLabel={"Next →"}
+                breakLabel={"..."}
+                pageCount={50}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                pageClassName={"page-item"}
+                pageLinkClassName={"page-link"}
+                previousClassName={"page-item"}
+                nextClassName={"page-item"}
+                previousLinkClassName={"page-link"}
+                nextLinkClassName={"page-link"}
+                breakClassName={"page-item"}
+                breakLinkClassName={"page-link"}
+            />
         </div>
-        <div className="page-number">page = {page}</div>
-      </>
-    </div>
-  )
-}
+    );
+};
 
-export default Shows
+export default Shows;

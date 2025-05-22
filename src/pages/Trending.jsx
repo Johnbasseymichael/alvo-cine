@@ -1,80 +1,68 @@
-import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
-import Banner from '../components/Banner'
-import Error from '../components/Error'
-import MovieList from '../components/MovieList'
-import { SearchContext } from '../context/SearchContext'
+import { useEffect, useState } from "react";
+import Banner from "../components/Banner";
+import Error from "../components/Error";
+import MovieList from "../components/MovieList";
+import useRandomMovies from "../hooks/useRandomMovies";
+import useFetchFilms from "../hooks/useFetchFilms";
+import ReactPaginate from "react-paginate";
+import MovieSkeleton from "../components/MovieSkeleton";
 
 const Trending = () => {
-  const { searchInput } = useContext(SearchContext)
-  const [trending, setTrending] = useState([])
-  const [isError, setIsError] = useState(false)
-  const isSearch = searchInput ? 'search' : 'trending';
+    const [page, setPage] = useState(1);
 
-  const [page, setPage] = useState(1)
 
-  const getTrends = async () => {
-    document.title = 'Trends'
-    const options = {
-      method: 'GET',
-      url: `https://api.themoviedb.org/3/${isSearch}/all/week?page=${page}`,
-      params: {
-        api_key: import.meta.env.VITE_API_KEY,
-        query: searchInput
-      },
+useEffect(() => {
+        document.title = "Trending || AlvoCine ";
+    }, []);
+
+    // getMovies
+    const {
+        films: trending,
+        isLoading,
+        isError,
+    } = useFetchFilms("trending", "all/week", page);
+
+    const randomMovies = useRandomMovies(trending);
+
+    //pagination
+    const handlePageClick = (data) => {
+        setPage(data.selected + 1); // selected is 0-based
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    await axios.request(options).then((response) => {
-      setTrending(response.data.results);
-    }).catch(function (error) {
-      setIsError(true)
-      // isLoading(false)
-      console.error(error);
-    });
-  }
+    if (isLoading) return <MovieSkeleton count={8} />;
+    if (isError) return <Error />;
 
+    return (
+        <div className="movies">
+            <Banner showSearchBar={false}  parentPath="/trending" randomMovies={randomMovies} />
+            <MovieList
+                parentPath={"trending/"}
+                sectionNumber={3}
+                getMovies={trending}
+            />
 
-  useEffect(() => {
-    getTrends()
-  }, [searchInput, page])
-
-  const randomImg = (arrr) => {
-    return Math.floor(Math.random() * arrr.length)
-  }
-  
-
-  const nextPage = () => {
-    setPage(page + 1)
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-  const prevPage = () => {
-    setPage(page - 1)
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-  
-  if (isError) return <Error />
-
-  return (
-    <div className='movies'>
-      <Banner showSearchBar={false} bannerImage={trending[randomImg(trending)]} />
-      <MovieList parentPath={'trending/'} getMovies={trending} />
-
-      {trending[0] && <>
-        <div className="pages-btn">
-          {page > 1 && <button onClick={prevPage}>prev</button>}
-          <button onClick={nextPage}>next</button>
+            <ReactPaginate
+                previousLabel={"← Prev"}
+                nextLabel={"Next →"}
+                breakLabel={"..."}
+                pageCount={50}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                pageClassName={"page-item"}
+                pageLinkClassName={"page-link"}
+                previousClassName={"page-item"}
+                nextClassName={"page-item"}
+                previousLinkClassName={"page-link"}
+                nextLinkClassName={"page-link"}
+                breakClassName={"page-item"}
+                breakLinkClassName={"page-link"}
+            />
         </div>
-        <div className="page-number">page = {page}</div>
-      </>}
-    </div>
-  )
-}
+    );
+};
 
-export default Trending
+export default Trending;

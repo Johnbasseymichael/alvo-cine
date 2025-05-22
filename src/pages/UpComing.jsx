@@ -1,71 +1,67 @@
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import React, { useState } from 'react'
-import Banner from '../components/Banner'
-import Error from '../components/Error'
-import Loading from '../components/Loading'
-import MovieList from '../components/MovieList'
+
+import { useEffect, useState } from "react";
+import Banner from "../components/Banner";
+import Error from "../components/Error";
+import MovieList from "../components/MovieList";
+import useRandomMovies from "../hooks/useRandomMovies";
+import useFetchFilms from "../hooks/useFetchFilms";
+import ReactPaginate from "react-paginate";
+import MovieSkeleton from "../components/MovieSkeleton";
 
 const UpComing = () => {
-  const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
 
-  const { data: upcoming, isError, isLoading } = useQuery(['get upcoming', page], async () => {
-    document.title = 'Up Coming'
+useEffect(() => {
+        document.title = "UpComing || AlvoCine ";
+    }, []);
 
-    const options = {
-      method: 'GET',
-      url: `https://api.themoviedb.org/3/movie/upcoming?page=${page}`,
-      params: {
-        api_key: import.meta.env.VITE_API_KEY,
-      }
+    //get upcoming
+    const {
+        films: upcoming,
+        isLoading,
+        isError,
+    } = useFetchFilms("movie", "upcoming", page); // Adjust if needed
+
+    // Shuffle and return random movies
+    const randomMovies = useRandomMovies(upcoming);
+
+    //pagination
+    const handlePageClick = (data) => {
+        setPage(data.selected + 1); // selected is 0-based
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    try {
-      const res = await axios.request(options)
-      return res.data.results
-    } catch (error) {
-      console.error(error);
-    };
-  })
-
-
-  const randomImg = (arrr) => {
-    return Math.floor(Math.random() * arrr.length)
-  }
-
-  const nextPage = () => {
-    setPage(page + 1)
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-  const prevPage = () => {
-    setPage(page - 1)
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-
-  if (isLoading) return <Loading />
-  if (isError) return <Error />
-  return (
-    <div>
-      <Banner showSearchBar={false} bannerImage={upcoming && upcoming[randomImg(upcoming)]} />
-      <MovieList parentPath={'upcoming/'} getMovies={upcoming} />
-
-
-      {upcoming[0] && <>
-        <div className="pages-btn">
-          {page > 1 && <button onClick={prevPage}>prev</button>}
-          <button onClick={nextPage}>next</button>
+    if (isLoading) return <MovieSkeleton count={8} />;
+    if (isError) return <Error />;
+    return (
+        <div>
+            <Banner showSearchBar={false}  parentPath="/upcoming" randomMovies={randomMovies} />
+            <MovieList
+                parentPath={"upcoming/"}
+                sectionNumber={4}
+                getMovies={upcoming}
+            />
+            <ReactPaginate
+                previousLabel={"← Prev"}
+                nextLabel={"Next →"}
+                breakLabel={"..."}
+                pageCount={50}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                pageClassName={"page-item"}
+                pageLinkClassName={"page-link"}
+                previousClassName={"page-item"}
+                nextClassName={"page-item"}
+                previousLinkClassName={"page-link"}
+                nextLinkClassName={"page-link"}
+                breakClassName={"page-item"}
+                breakLinkClassName={"page-link"}
+            />
         </div>
-        <div className="page-number">page = {page}</div>
-      </>}
-    </div>
-  )
-}
+    );
+};
 
-export default UpComing
+export default UpComing;
