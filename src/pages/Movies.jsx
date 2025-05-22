@@ -13,6 +13,7 @@ import useRandomMovies from "../hooks/useRandomMovies";
 const Movies = () => {
     const [page, setPage] = useState(1);
 
+    //  update page title
     useEffect(() => {
         document.title = "Discover || AlvoCine ";
     }, []);
