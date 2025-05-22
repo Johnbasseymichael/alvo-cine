@@ -34,7 +34,7 @@ const Navbar = () => {
                                 onClick={() => setOpenMobileMenu(false)}
                                 to={"/"}
                             >
-                                <span>Movies</span>
+                                <span>Discover</span>
                             </Link>
                             <Link
                                 onClick={() => setOpenMobileMenu(false)}

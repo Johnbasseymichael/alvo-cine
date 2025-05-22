@@ -1,0 +1,38 @@
+/* Desktop */
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.skeleton-card {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0.5rem;
+}
+
+.skeleton-text {
+    margin-top: 0.5rem;
+}
+
+
+
+
+.skel-banner {
+  width: 100%;
+  max-width: 65rem;
+}
+.boss-container {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media screen and (min-width: 500px) {
+ .skel-banner {
+    height: 300px !important;
+ }
+}

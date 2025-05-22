@@ -7,11 +7,24 @@ import Trending from "./pages/Trending";
 import UpComing from "./pages/UpComing";
 import MovieDetails from "./pages/MovieDetails";
 import ShowDetails from "./pages/ShowDetails";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Offline from "./components/Offline";
 import PNF from "./pages/PNF";
 
+import "react-loading-skeleton/dist/skeleton.css";
+
+import { useLocation } from "react-router-dom";
+import { SearchContext } from "./context/SearchContext";
+
 function App() {
+    const location = useLocation();
+    const { setSearchInput } = useContext(SearchContext);
+
+    useEffect(() => {
+        // Reset search input whenever the path changes
+        setSearchInput("");
+    }, [location.pathname]);
+
     const [isOnline, setIsOnline] = useState(navigator.onLine);
 
     useEffect(() => {
@@ -26,7 +39,6 @@ function App() {
             window.removeEventListener("offline", handleOffline);
         };
     }, []);
-    
 
     return (
         <>
@@ -48,6 +60,6 @@ function App() {
 }
 export default App;
 
-
-// hooks
-// skeleton
+//movie detail title
+// serch issue
+// banner issue

@@ -1,100 +1,61 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+import { useState } from "react";
 import Banner from "../components/Banner";
 import Error from "../components/Error";
-import Loading from "../components/Loading";
 import MovieList from "../components/MovieList";
+import useRandomMovies from "../hooks/useRandomMovies";
+import useFetchFilms from "../hooks/useFetchFilms";
+import ReactPaginate from "react-paginate";
+import MovieSkeleton from "../components/MovieSkeleton";
 
 const UpComing = () => {
     const [page, setPage] = useState(1);
 
+    //get upcoming
     const {
-        data: upcoming,
-        isError,
+        films: upcoming,
         isLoading,
-    } = useQuery(["get upcoming", page], async () => {
-        document.title = "Up Coming";
+        isError,
+    } = useFetchFilms("movie", "upcoming", page); // Adjust if needed
 
-        const options = {
-            method: "GET",
-            url: `https://api.themoviedb.org/3/movie/upcoming?page=${page}`,
-            params: {
-                api_key: import.meta.env.VITE_API_KEY,
-            },
-        };
+    // Shuffle and return random movies
+    const randomMovies = useRandomMovies(upcoming);
 
-        try {
-            const res = await axios.request(options);
-            return res.data.results;
-        } catch (error) {
-            console.error(error);
-        }
-    });
-
-    const randomImg = (arrr) => {
-        return Math.floor(Math.random() * arrr.length);
+    //pagination
+    const handlePageClick = (data) => {
+        setPage(data.selected + 1); // selected is 0-based
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    const nextPage = () => {
-        setPage(page + 1);
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-    const prevPage = () => {
-        setPage(page - 1);
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-
-    const [randomMovies, setRandomMovies] = useState([]);
-
-    // ⬇️ Utility: Shuffle and return random movies
-    function getRandomMovies(movies, count = 5) {
-        const shuffled = [...movies];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        return shuffled.slice(0, count);
-    }
-
-    // ⬇️ Update random movies after fetch
-    useEffect(() => {
-        if (upcoming?.length > 0) {
-            const random = getRandomMovies(upcoming, 5);
-            setRandomMovies(random);
-        }
-    }, [upcoming]);
-
-    if (isLoading) return <Loading />;
+    if (isLoading) return <MovieSkeleton count={8} />;
     if (isError) return <Error />;
     return (
         <div>
-            <Banner
-                showSearchBar={false}
-                randomMovies={randomMovies}
-                bannerImage={upcoming && upcoming[randomImg(upcoming)]}
-            />
+            <Banner showSearchBar={false} randomMovies={randomMovies} />
             <MovieList
                 parentPath={"upcoming/"}
                 sectionNumber={4}
                 getMovies={upcoming}
             />
-
-            {upcoming[0] && (
-                <>
-                    <div className="pages-btn">
-                        {page > 1 && <button onClick={prevPage}>prev</button>}
-                        <button onClick={nextPage}>next</button>
-                    </div>
-                    <div className="page-number">page = {page}</div>
-                </>
-            )}
+            <ReactPaginate
+                previousLabel={"← Prev"}
+                nextLabel={"Next →"}
+                breakLabel={"..."}
+                pageCount={50}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                pageClassName={"page-item"}
+                pageLinkClassName={"page-link"}
+                previousClassName={"page-item"}
+                nextClassName={"page-item"}
+                previousLinkClassName={"page-link"}
+                nextLinkClassName={"page-link"}
+                breakClassName={"page-item"}
+                breakLinkClassName={"page-link"}
+            />
         </div>
     );
 };
