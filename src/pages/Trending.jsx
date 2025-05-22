@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import Error from "../components/Error";
 import MovieList from "../components/MovieList";
@@ -9,6 +9,11 @@ import MovieSkeleton from "../components/MovieSkeleton";
 
 const Trending = () => {
     const [page, setPage] = useState(1);
+
+
+useEffect(() => {
+        document.title = "Trending || AlvoCine ";
+    }, []);
 
     // getMovies
     const {
@@ -30,7 +35,7 @@ const Trending = () => {
 
     return (
         <div className="movies">
-            <Banner showSearchBar={false} randomMovies={randomMovies} />
+            <Banner showSearchBar={false}  parentPath="/trending" randomMovies={randomMovies} />
             <MovieList
                 parentPath={"trending/"}
                 sectionNumber={3}

@@ -1,13 +1,11 @@
 .error {
     width: 100vw;
-    height: 100vh;
+    height: 90svh;
     display: grid;
     place-content: center;
-    background: rgba(0, 0, 0, .5);
 }
 
 .error>div {
-    background: var(--card-color);
     text-align: center;
     padding: 1rem;
 }
@@ -19,7 +17,7 @@
 }
 
 .error button {
-    background: orangered;
+    background: var(--red);
     color: wheat;
     font-size: 1rem;
     padding: .5rem 1rem;

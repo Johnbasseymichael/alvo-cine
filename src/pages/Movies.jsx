@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 import MovieSkeleton from "../components/MovieSkeleton";
@@ -12,6 +12,10 @@ import useRandomMovies from "../hooks/useRandomMovies";
 
 const Movies = () => {
     const [page, setPage] = useState(1);
+
+    useEffect(() => {
+        document.title = "Discover || AlvoCine ";
+    }, []);
 
     //get movies
     const {

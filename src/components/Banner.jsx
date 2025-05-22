@@ -238,7 +238,7 @@ const Banner = ({ randomMovies = [], showSearchBar, parentPath }) => {
 
     const handleSearch = () => {
         setSearchInput(searchInp)
-        if (!searchInput.trim()) return;
+        // if (!searchInput.trim()) return;
         // already updated by the input onChange
     };
 
@@ -285,7 +285,7 @@ const Banner = ({ randomMovies = [], showSearchBar, parentPath }) => {
                     <input
                         type="search"
                         placeholder="Search for your favorite movie"
-                        value={searchInput || searchInp}
+                        value={searchInp || searchInput}
                         onChange={(e) => setSearchInp(e.target.value)}
                     />
                     <button onClick={handleSearch} className="search-icon">

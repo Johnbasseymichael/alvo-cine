@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style/film-details.css";
 import noImg from "../assets/img.png";
 import MovieTrailer from "../trailer/MovieTrailer";
 import { BsFillPlayFill } from "react-icons/bs";
+import { AiOutlineClose } from "react-icons/ai";
 
 const FilmDetails = ({ tvShow, movieDetails }) => {
     const images = " https://image.tmdb.org/t/p/w500";
@@ -12,6 +13,11 @@ const FilmDetails = ({ tvShow, movieDetails }) => {
             images + movieDetails?.backdrop_path
         })`,
     };
+
+    useEffect(() => {
+        document.title =
+            movieDetails?.title || movieDetails?.name + " || AlvoCine";
+    }, []);
 
     const [movieTitle, setMovieTile] = useState("");
     const [showTrailer, setShowTrailer] = useState(false);
@@ -29,7 +35,6 @@ const FilmDetails = ({ tvShow, movieDetails }) => {
     return (
         <>
             <div className="movie-details">
-
                 <div style={backgroundImageStyle} className="movie">
                     <div className="movie-inner-container">
                         <div
@@ -233,15 +238,14 @@ const FilmDetails = ({ tvShow, movieDetails }) => {
                                                         alt="company logo"
                                                     />
                                                 </div>
-                                                
 
                                                 <div className="company-details">
-
-                                                <p className="company-name">
-                                                    {company.name}
-                                                </p>
-                                                <p>{company.origin_country}</p>
-
+                                                    <p className="company-name">
+                                                        {company.name}
+                                                    </p>
+                                                    <p>
+                                                        {company.origin_country}
+                                                    </p>
                                                 </div>
                                             </div>
                                         );
@@ -337,7 +341,7 @@ const FilmDetails = ({ tvShow, movieDetails }) => {
             {showTrailer && (
                 <div onClick={handleClose} className="trailer-container">
                     <div className="close-video-btn" onClick={handleClose}>
-                        &
+                        <AiOutlineClose />
                     </div>
                     <MovieTrailer movieTitle={movieTitle} />
                 </div>

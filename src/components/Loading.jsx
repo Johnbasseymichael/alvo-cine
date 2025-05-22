@@ -1,18 +1,23 @@
-import React from 'react'
+import React from "react";
+import { BallTriangle } from "react-loader-spinner";
 import './style/loading.css'
 
-
-const Loading = () => {
-  return (
-    <div className='loader'>
-      <div className="loadingio-spinner-rolling-z2822japxbp">
-        <div className="ldio-u9a8am7bdt">
-          <div></div>
+function Loading() {
+    return (
+        <div className="loading-wrapper">
+            <BallTriangle
+                height={150}
+                width={150}
+                radius={5}
+                color="var(--red)"
+                ariaLabel="ball-triangle-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+            />
+            <p className="italic ">Loading...</p>
         </div>
-      </div>
-    </div>
-  )
+    );
 }
 
-export default Loading
-
+export default Loading;

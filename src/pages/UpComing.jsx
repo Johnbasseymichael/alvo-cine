@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import Error from "../components/Error";
 import MovieList from "../components/MovieList";
@@ -10,6 +10,10 @@ import MovieSkeleton from "../components/MovieSkeleton";
 
 const UpComing = () => {
     const [page, setPage] = useState(1);
+
+useEffect(() => {
+        document.title = "UpComing || AlvoCine ";
+    }, []);
 
     //get upcoming
     const {
@@ -31,7 +35,7 @@ const UpComing = () => {
     if (isError) return <Error />;
     return (
         <div>
-            <Banner showSearchBar={false} randomMovies={randomMovies} />
+            <Banner showSearchBar={false}  parentPath="/upcoming" randomMovies={randomMovies} />
             <MovieList
                 parentPath={"upcoming/"}
                 sectionNumber={4}

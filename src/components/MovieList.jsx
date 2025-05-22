@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import "./style/movie-list.css";
 import MovieTrailer from "../trailer/MovieTrailer";
+import { AiOutlineClose } from "react-icons/ai";
 
 const MovieList = ({ parentPath, getMovies, sectionNumber }) => {
     const [movieTitle, setMovieTile] = useState("");
@@ -44,7 +45,7 @@ const MovieList = ({ parentPath, getMovies, sectionNumber }) => {
                 {showTrailer && (
                     <div onClick={handleClose} className="trailer-container">
                         <div className="close-video-btn" onClick={handleClose}>
-                            &
+                            <AiOutlineClose />
                         </div>
                         <MovieTrailer movieTitle={movieTitle} />
                     </div>

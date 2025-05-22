@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import Error from "../components/Error";
 import MovieList from "../components/MovieList";
@@ -9,6 +9,10 @@ import ReactPaginate from "react-paginate";
 
 const Shows = () => {
     const [page, setPage] = useState(1);
+
+    useEffect(() => {
+            document.title = "Series || AlvoCine ";
+        }, []);
 
     //get shows/series
     const {
@@ -30,7 +34,7 @@ const Shows = () => {
 
     return (
         <div className="movies">
-            <Banner showSearchBar={true} randomMovies={randomMovies} />
+            <Banner showSearchBar={true}  parentPath="/shows" randomMovies={randomMovies} />
             <MovieList
                 parentPath={"shows/"}
                 sectionNumber={2}

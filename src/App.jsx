@@ -49,6 +49,7 @@ function App() {
                 <Route path="/trending" element={<Trending />} />
                 <Route path="/shows" element={<Shows />} />
                 <Route path="/upcoming" element={<UpComing />} />
+
                 <Route path="*" element={<PNF />} />
                 <Route path="/:movieId" element={<MovieDetails />} />
                 <Route path="/upcoming/:movieId" element={<MovieDetails />} />
@@ -59,7 +60,3 @@ function App() {
     );
 }
 export default App;
-
-//movie detail title
-// serch issue
-// banner issue
