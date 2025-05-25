@@ -105,16 +105,36 @@
 
 @media screen and (max-width: 800px) {
     .banner {
-        height: 20rem;
+        height: 16.5rem;
+        margin: 0 0.5rem;
     }
 
     .random-movie-details {
         left: 1rem;
-        bottom: 3rem;
+        bottom: 2rem;
+    }
+
+    .random-movie-details h2 {
+        font-size: 1.4rem;
+    }
+
+    .random-movie-details i {
+        font-size: 0.86rem;
+        width: 94%;
+    }
+
+    .random-movie-details a {
+        font-size: 0.88rem;
+        padding: 0.4rem 0.7rem;
     }
 
     .search {
         grid-template-columns: auto 3.2rem;
+        gap: 0.4rem;
+    }
+
+    .search-icon {
+        padding: 0.55rem !important;
     }
 
     .search-icon span {

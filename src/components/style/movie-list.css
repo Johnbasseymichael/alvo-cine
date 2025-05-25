@@ -68,6 +68,13 @@
         margin: 4rem auto 2rem auto;
     }
 
+    .movie-list {
+        
+        grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+        gap: .5rem;
+        padding: 1rem 0;
+    }
+
     .trailer-container .trailer > div {
         width: 100vw !important;
         height: 60vh !important;
